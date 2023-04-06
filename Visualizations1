@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# load preprocessed data
+data = pd.read_csv("data/preprocessed_housing_data.csv")
+
+# create correlation matrix
+corr_matrix = data.corr()
+
+# plot heatmap of correlation matrix
+plt.figure(figsize=(12, 10))
+sns.heatmap(corr_matrix, annot=True, cmap=plt.cm.Reds)
+plt.title("Correlation Matrix Heatmap")
+plt.show()
+
+# plot distribution of target variable
+plt.figure(figsize=(8, 6))
+sns.histplot(data=data, x="MEDV", bins=30, kde=True)
+plt.title("Distribution of Target Variable: MEDV")
+plt.xlabel("MEDV")
+plt.ylabel("Count")
+plt.show()
+
+# plot scatter plot of target variable against most correlated feature
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=data, x="RM", y="MEDV")
+plt.title("Relationship between RM and MEDV")
+plt.xlabel("Average Number of Rooms per Dwelling (RM)")
+plt.ylabel("Median Value of Owner-Occupied Homes in $1000's (MEDV)")
+plt.show()
